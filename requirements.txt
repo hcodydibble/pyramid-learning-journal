@@ -2,6 +2,7 @@ beautifulsoup4==4.6.0
 coverage==4.4.1
 hupper==1.0
 Jinja2==2.9.6
+-e git+https://github.com/hcodydibble/pyramid-learning-journal.git@7c4e1b4d6b774daf2b38c70b32b779ae2b4ce153#egg=learning_journal
 Mako==1.0.7
 MarkupSafe==1.0
 PasteDeploy==1.5.2
