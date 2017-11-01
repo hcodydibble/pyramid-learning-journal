@@ -28,3 +28,9 @@ def update_view(request):
     """Function that updates existing view."""
     with open(os.path.join(STATIC, 'templates/edit.html')) as f:
         return Response(f.read())
+
+
+def about_view(request):
+    """Function that serves about page."""
+    with open(os.path.join(STATIC, 'templates/about.html')) as f:
+        return Response(f.read())
