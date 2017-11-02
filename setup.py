@@ -19,6 +19,7 @@ requires = [
     'transaction',
     'zope.sqlalchemy',
     'waitress',
+    'psycopg2'
 ]
 
 tests_require = [
@@ -39,8 +40,8 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
     ],
-    author='',
-    author_email='',
+    author='H. Cody Dibble',
+    author_email='hcodydibble@gmail.com',
     url='',
     keywords='web pyramid pylons',
     packages=find_packages(),
@@ -55,7 +56,7 @@ setup(
             'main = learning_journal:main',
         ],
         'console_scripts': [
-            'initialize_learning_journal_db = learning_journal.scripts.initializedb:main',
+            'initdb = learning_journal.scripts.initializedb:main',
         ],
     },
 )
