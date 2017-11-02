@@ -11,7 +11,7 @@ JOURNAL_ENTRIES = [{"id": 1,
                     "body": "Tests! Tests! Tests! Can't wait to get to yell that out at everybody"
                     },
                    {"id": 3,
-                    "title": "Another day. Another knowledge.",
+                    "title": "Day Three: Another day. Another knowledge.",
                     "creation_date": "Thursday, 19 October, 2017, 6:18 pm",
                     "body": "I feel like I learned that re-writing code you have already written from scratch is a great way to solidify some knowledge and also improve how the code looks"
                     },
@@ -45,8 +45,19 @@ JOURNAL_ENTRIES = [{"id": 1,
                     "creation_date": "Friday, 27 October, 2017, 9:42 pm",
                     "body": "Jk, fancy titles are for life. Today had me feeling all sorts of feels, it sometimes still feels like I'm not making any progress but I'm hoping that's just in my mind. The server is still kicking my butt but me and Phil have been slowly but surely getting through it and looking forward to never building one from the ground up again."
                     },
+                    {"id": 11,
+                    "title": "Day Eleven: Problems look mighty big from 150 miles under water",
+                    "creation_date": "Monday, 30 October, 2017",
+                    "body": "This will be short and sweet since we are currently still working on it. Today we learned about Pyramid which takes all the server fun times we had last week and says 'Hey man, don\'t you worry about that, I got your back.' and so I say 'Hey dude, thanks.' Pyramid seems relatively straight forward currently but we shall see how the week unfolds."
+                    },
                     {"id": 12,
-                    "title": "Day 12: Dat Heap Doe",
+                    "title": "Day Twelve: Dat Heap Doe",
                     "creation_date": "Tuesday, 31 October, 2017, 8:13 pm",
                     "body": "Pyramid step 1 down? Check! Heroku being a pain to deal with when using Python? Check! Apparently my original (totally sweet and completely feasible plan) for a binary heap was cheating so now we're going through and working it another way, Adrienne is a genius basically."
+                    },
+                    {"id": 13,
+                    "title": "Day Thirteen: Day of the Jinja",
+                    "creation_date": "Wednesday, 1 November, 2017, 8:17 pm",
+                    "body": "So starting with Jinja2 templates was terrible, and then Carson and I figured out what we were doing wrong (shout out to (TA)Chris for pointing out we were grabbing the wrong ish) it turned into easy peasy and we made everything look rad. Priority Queue is way nicer than Binary Tree, I'm scared of building more trees"
+
                     }]
