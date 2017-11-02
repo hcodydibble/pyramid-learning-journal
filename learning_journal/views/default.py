@@ -7,8 +7,15 @@ from learning_journal.data.journal_entries import JOURNAL_ENTRIES
 def list_view(request):
     """Function that generates list of journal entries."""
     return {
-        "title": "Cody's Totally Amazing Journey Through The Land of Journal Entries",
         "journals": JOURNAL_ENTRIES[::-1]
+    }
+
+
+@view_config(route_name="about", renderer="learning_journal:templates/about.jinja2")
+def about_view(request):
+    """Function that sends the user to the About page."""
+    return{
+        "title": "This is what I do."
     }
 
 
