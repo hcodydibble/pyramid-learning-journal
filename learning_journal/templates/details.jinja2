@@ -1,0 +1,31 @@
+{% extends "layout.jinja2" %}
+
+{% block content %}
+    <header class="masthead" style="background-image: url('{{ request.static_url('learning_journal:static/img/post-bg.jpg') }}">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1>Man must explore, and this is exploration at its greatest</h1>
+              <h2 class="subheading">{{ post.title }}</h2>
+              <span class="meta">Posted by
+                <a href="/about">H. Cody Dibble</a>
+                on {{ post.creation_date }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <article>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <p>{{ post.body }}</p>
+            <a class="btn btn-secondary float-right" href="{{ request.route_url('update', id=post.id) }}">Edit Entry</a>
+          </div>
+        </div>
+      </div>
+    </article>
+{% endblock %}
+<a class="btn btn-secondary float-right" href="{{ request.route_url('update', id=post.id) }}">Edit Entry</a>
+{{ request.route_url('update', id=post.id) }}
