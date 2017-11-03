@@ -16,9 +16,7 @@ def list_view(request):
 @view_config(route_name="about", renderer="learning_journal:templates/about.jinja2")
 def about_view(request):
     """Function that sends the user to the About page."""
-    return{
-        "title": "This is what I do."
-    }
+    return{}
 
 
 @view_config(route_name="details", renderer="learning_journal:templates/details.jinja2")
@@ -32,10 +30,12 @@ def detail_view(request):
     }
 
 
-# def create_view(request):
-#     """Function that generates new view."""
-#     with open(os.path.join(STATIC, 'templates/public/new_entry.html')) as f:
-#         return Response(f.read())
+@view_config(route_name="create", renderer="learning_journal:templates/create.jinja2")
+def create_view(request):
+    """Function that generates new view."""
+    return{
+        "title": "Make many much words."
+    }
 
 
 @view_config(route_name="update", renderer="learning_journal:templates/update.jinja2")

@@ -1,7 +1,7 @@
 # from .default import list_view, detail_view, create_view, update_view, about_view
 
 
-def includeme(config):
+def includeme(config):  # pragma: no cover
     """."""
     pass
 #     config.add_view(list_view, route_name='home')
