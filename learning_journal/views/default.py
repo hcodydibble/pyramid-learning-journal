@@ -1,6 +1,5 @@
 """Module that contains callable server functions."""
 from pyramid.view import view_config
-from learning_journal.data.journal_entries import JOURNAL_ENTRIES
 from learning_journal.models.entrymodel import Entry
 
 
