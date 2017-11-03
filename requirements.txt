@@ -17,7 +17,6 @@ ipython-genutils==0.2.0
 jedi==0.11.0
 Jinja2==2.9.6
 jinja2-time==0.2.0
--e git+https://github.com/hcodydibble/pyramid-learning-journal.git@26bbac29aa117765b9b6dea2637d1eda30a79ccc#egg=learning_journal
 Mako==1.0.7
 MarkupSafe==1.0
 parso==0.1.0
