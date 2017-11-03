@@ -47,4 +47,8 @@ JOURNAL_ENTRIES = [{"title": "Day One: Knowledge +1",
                     {"title": "Day Thirteen: Day of the Jinja",
                     "creation_date": "Wednesday, 1 November, 2017, 8:17 pm",
                     "body": "So starting with Jinja2 templates was terrible, and then Carson and I figured out what we were doing wrong (shout out to (TA)Chris for pointing out we were grabbing the wrong ish) it turned into easy peasy and we made everything look rad. Priority Queue is way nicer than Binary Tree, I'm scared of building more trees"
+                    },
+                    {"title": "Day Fourteen: Oh Boy Nothing Like Everything Breaking After It Worked Before",
+                    "creation_date": "Thursday, 2 November, 2017, 9:50 pm",
+                    "body": "Yep, that title explains basically my life now. Had my journal page working, went to check it and all of a sudden I was getting a database error. Fun fun times. Other than that today was good!"
                     }]

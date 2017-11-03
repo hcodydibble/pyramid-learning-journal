@@ -1,7 +1,6 @@
 """Module that contains callable server functions."""
 from pyramid.view import view_config
 from learning_journal.models.entrymodel import Entry
-from pyramid.httpexceptions import HTTPNotFound, HTTPFound, HTTPBadRequest
 
 
 @view_config(route_name="home", renderer="learning_journal:templates/journal_entries.jinja2")
