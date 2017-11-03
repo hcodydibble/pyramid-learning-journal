@@ -14,9 +14,7 @@ def list_view(request):
 @view_config(route_name="about", renderer="learning_journal:templates/about.jinja2")
 def about_view(request):
     """Function that sends the user to the About page."""
-    return{
-        "title": "This is what I do."
-    }
+    return{}
 
 
 @view_config(route_name="details", renderer="learning_journal:templates/details.jinja2")
