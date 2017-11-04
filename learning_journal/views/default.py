@@ -1,5 +1,6 @@
 """Module that contains callable server functions."""
 from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPBadRequest, HTTPFound, HTTPNotFound
 from learning_journal.models.entrymodel import Entry
 
 
@@ -23,18 +24,28 @@ def detail_view(request):
     """Function that generates single journal entry."""
     post_id = int(request.matchdict['id'])
     post = request.dbsession.query(Entry).get(post_id)
-    return {
-        "title": "Details",
-        "post": post
-    }
+    if post:
+        return {
+            "title": "Details",
+            "post": post
+        }
+    raise HTTPNotFound
 
 
 @view_config(route_name="create", renderer="learning_journal:templates/create.jinja2")
 def create_view(request):
     """Function that generates new view."""
-    return{
-        "title": "Make many much words."
-    }
+    if request.method == "GET":
+        return{}
+    if request.method == "POST":
+        if not all([field in request.POST for field in ['title', 'body']]):
+            raise HTTPBadRequest
+        new_entry = Entry(
+            title=request.POST['title'],
+            body=request.POST['body']
+        )
+        request.dbsession.add(new_entry)
+        return HTTPFound(request.route_url('home'))
 
 
 @view_config(route_name="update", renderer="learning_journal:templates/update.jinja2")
@@ -42,8 +53,27 @@ def update_view(request):
     """Function that updates existing view."""
     post_id = int(request.matchdict['id'])
     post = request.dbsession.query(Entry).get(post_id)
-    return{
-        "title": "Update",
-        "post": post
-    }
-    pass
+    if not post:
+        return HTTPNotFound
+    if request.method == "GET":
+        return{
+            "title": "Update",
+            "post": post
+        }
+    if request.method == "POST":
+        post.title = request.POST['title']
+        post.body = request.POST['body']
+        request.dbsession.add(post)
+        request.dbsession.flush()
+        return HTTPFound(request.route_url('details', id=post.id))
+
+
+@view_config(route_name="delete")
+def delete_entry(request):
+    """Function to delete an entry."""
+    post_id = int(request.matchdict['id'])
+    post = request.dbsession.query(Entry).get(post_id)
+    if not post:
+        return HTTPNotFound
+    request.dbsession.delete(post)
+    return HTTPFound(request.route_url('home'))

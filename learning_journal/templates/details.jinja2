@@ -21,11 +21,11 @@
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <p>{{ post.body }}</p>
-            <a class="btn btn-secondary float-right" href="{{ request.route_url('update', id=post.id) }}">Edit Entry</a>
+            <hr>
+            <a class="btn btn-secondary float-left" href="{{ request.route_url('update', id=post.id) }}">Edit Entry</a>
+            <a class="btn btn-secondary float-right" href="{{ request.route_url('delete', id=post.id) }}">Delete Entry</a>
           </div>
         </div>
       </div>
     </article>
 {% endblock %}
-<a class="btn btn-secondary float-right" href="{{ request.route_url('update', id=post.id) }}">Edit Entry</a>
-{{ request.route_url('update', id=post.id) }}

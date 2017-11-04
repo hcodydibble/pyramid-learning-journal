@@ -1,14 +1,8 @@
 """Functions that test server functions."""
 import pytest
-import transaction
-from pyramid import testing
-from learning_journal.models import (
-    Entry,
-    get_tm_session
-)
-from learning_journal.models.meta import Base
-from faker import Faker
+from pyramid.httpexceptions import HTTPBadRequest, HTTPNotFound
 from datetime import datetime
+from learning_journal.models import Entry
 
 
 @pytest.fixture(scope="session")
@@ -150,10 +144,56 @@ def test_create_view_returns_a_dict(dummy_request):
     assert isinstance(response, dict)
 
 
-def test_home_route_with_journals_has_headers(testapp, fill_the_db):
-    """Test that the home route lists out journal entries."""
-    response = testapp.get("/")
-    assert len(response.html.find_all('h2')) == 20
+def test_detail_view_returns_post_detail(dummy_request):
+    """Test that detail view returns post details."""
+    from learning_journal.views.default import detail_view
+    test_entry = Entry(
+        title="Fake Title",
+        creation_date=datetime.now(),
+        body="The body lul"
+    )
+    dummy_request.dbsession.add(test_entry)
+    dummy_request.matchdict['id'] = 1
+    response = detail_view(dummy_request)
+    assert response['post'].title == "Fake Title"
+
+
+def test_create_view_get_empty_is_empty_dict(dummy_request):
+    """Test that GET request on create view returns empty dict."""
+    from learning_journal.views.default import create_view
+    dummy_request.method = "GET"
+    response = create_view(dummy_request)
+    assert response == {}
+
+
+def test_create_view_post_works(dummy_request):
+    """Test that create view post creates new entry."""
+    from learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    test_post = {"title": "Test", "body": "This is a body."}
+    dummy_request.POST = test_post
+    response = create_view(dummy_request)
+    assert response.status_code == 302
+
+
+def test_create_view_raises_bad_request(dummy_request):
+    """Test that an incomplete post request returns HTTPBadRequest."""
+    from learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    test_post = {"title": "Test"}
+    dummy_request.POST = test_post
+    with pytest.raises(HTTPBadRequest):
+        create_view(dummy_request)
+
+
+def test_new_entry_redirects_to_home_page(testapp, empty_db):
+    """Test that after adding a new entry you get redirected to home page."""
+    test_entry = {
+        "title": "Fake Title",
+        "body": "The body lul"
+    }
+    response = testapp.post("/journal/new-entry", test_entry)
+    assert response.location == "http://localhost/"
 
 
 def test_detail_view_returns_correct_post_title(dummy_request):
