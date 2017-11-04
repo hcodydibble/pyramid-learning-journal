@@ -2,7 +2,6 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPBadRequest, HTTPFound, HTTPNotFound
 from learning_journal.models.entrymodel import Entry
-from datetime import datetime
 
 
 @view_config(route_name="home", renderer="learning_journal:templates/journal_entries.jinja2")
@@ -25,10 +24,12 @@ def detail_view(request):
     """Function that generates single journal entry."""
     post_id = int(request.matchdict['id'])
     post = request.dbsession.query(Entry).get(post_id)
-    return {
-        "title": "Details",
-        "post": post
-    }
+    if post:
+        return {
+            "title": "Details",
+            "post": post
+        }
+    raise HTTPNotFound
 
 
 @view_config(route_name="create", renderer="learning_journal:templates/create.jinja2")

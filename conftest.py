@@ -98,3 +98,12 @@ ENTRIES = [Entry(
     creation_date=FAKE.date_time,
     body=FAKE.paragraph()
 ) for i in range(20)]
+
+
+@pytest.fixture
+def empty_db(testapp):
+    """Tear down the database and add a fresh table."""
+    SessionFactory = testapp.app.registry["dbsession_factory"]
+    engine = SessionFactory().bind
+    Base.metadata.drop_all(bind=engine)
+    Base.metadata.create_all(bind=engine)

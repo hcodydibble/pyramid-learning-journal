@@ -1,4 +1,6 @@
 """Functions that test server functions."""
+import pytest
+from pyramid.httpexceptions import HTTPBadRequest, HTTPNotFound
 from datetime import datetime
 from learning_journal.models import Entry
 
@@ -50,3 +52,53 @@ def test_create_view_returns_a_dict(dummy_request):
     from learning_journal.views.default import create_view
     response = create_view(dummy_request)
     assert isinstance(response, dict)
+
+
+def test_detail_view_returns_post_detail(dummy_request):
+    """Test that detail view returns post details."""
+    from learning_journal.views.default import detail_view
+    test_entry = Entry(
+        title="Fake Title",
+        creation_date=datetime.now(),
+        body="The body lul"
+    )
+    dummy_request.dbsession.add(test_entry)
+    dummy_request.matchdict['id'] = 1
+    response = detail_view(dummy_request)
+    assert response['post'].title == "Fake Title"
+
+
+def test_create_view_get_empty_is_empty_dict(dummy_request):
+    """Test that GET request on create view returns empty dict."""
+    from learning_journal.views.default import create_view
+    dummy_request.method = "GET"
+    response = create_view(dummy_request)
+    assert response == {}
+
+
+def test_create_view_post_works(dummy_request):
+    """Test that create view post creates new entry."""
+    from learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    test_post = {"title": "Test", "body": "This is a body."}
+    dummy_request.POST = test_post
+    response = create_view(dummy_request)
+    assert response.status_code == 302
+
+
+def test_create_view_raises_bad_request(dummy_request):
+    """Test that an incomplete post request returns HTTPBadRequest."""
+    from learning_journal.views.default import create_view
+    dummy_request.method = "POST"
+    test_post = {"title": "Test"}
+    dummy_request.POST = test_post
+    with pytest.raises(HTTPBadRequest):
+        create_view(dummy_request)
+
+
+def test_update_view_raises_not_found(dummy_request):
+    """Test that update view raises HTTPNotFound if ID doesn't exist."""
+    from learning_journal.views.default import update_view
+    dummy_request.matchdict['id'] = 29
+    with pytest.raises(HTTPNotFound):
+        update_view(dummy_request)
