@@ -106,9 +106,12 @@ def test_new_entry_redirects_to_home_page(testapp, empty_db):
     assert response.location == "http://localhost/"
 
 
-def test_detail_view_returns_correct_post_title(dummy_request):
+def test_detail_view_returns_correct_post_title(testapp, empty_db):
     """Test that the detail view returns the correct post."""
-    from learning_journal.views.default import detail_view
-    dummy_request.matchdict['id'] = 1
-    response = detail_view(dummy_request)
+    test_entry = {
+        "title": "Fake Title",
+        "body": "The body lul"
+    }
+    testapp.matchdict['id'] = 1
+    response = testapp.post("/journal/1/edit-entry", test_entry)
     assert "Day 1: " in response['post'].title
