@@ -6,7 +6,7 @@
 
 **Step 1**: default.py - 100%
 
-**Step 2**: default.py - 100%
+**Step 2**: default.py - 100%\
             routes.py - 100%
 
 **Step 3**: default.py - 82%
