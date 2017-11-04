@@ -96,9 +96,11 @@ def test_create_view_raises_bad_request(dummy_request):
         create_view(dummy_request)
 
 
-def test_update_view_raises_not_found(dummy_request):
-    """Test that update view raises HTTPNotFound if ID doesn't exist."""
-    from learning_journal.views.default import update_view
-    dummy_request.matchdict['id'] = 29
-    with pytest.raises(HTTPNotFound):
-        update_view(dummy_request)
+def test_new_entry_redirects_to_home_page(testapp, empty_db):
+    """Test that after adding a new entry you get redirected to home page."""
+    test_entry = {
+        "title": "Fake Title",
+        "body": "The body lul"
+    }
+    response = testapp.post("/journal/new-entry", test_entry)
+    assert response.location == "http://localhost/"
