@@ -95,7 +95,7 @@ def fill_the_db(testapp):
 
 FAKE = Faker()
 ENTRIES = [Entry(
-    title=FAKE.text(30),
+    title="Day {}: {}".format(i + 1, FAKE.text(30)),
     creation_date=FAKE.date_time,
     body=FAKE.paragraph()
 ) for i in range(20)]
@@ -154,3 +154,11 @@ def test_home_route_with_journals_has_headers(testapp, fill_the_db):
     """Test that the home route lists out journal entries."""
     response = testapp.get("/")
     assert len(response.html.find_all('h2')) == 20
+
+
+def test_detail_view_returns_correct_post_title(dummy_request):
+    """Test that the detail view returns the correct post."""
+    from learning_journal.views.default import detail_view
+    dummy_request.matchdict['id'] = 1
+    response = detail_view(dummy_request)
+    assert "Day 1: " in response['post'].title
