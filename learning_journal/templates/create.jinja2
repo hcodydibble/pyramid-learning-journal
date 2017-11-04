@@ -1,17 +1,16 @@
 {% extends "layout.jinja2" %}
 {% block content %}
-    <form name="sentMessage" id="contactForm" novalidate>
+    <form method="POST" id="contactForm" novalidate>
       <div class="control-group">
         <div class="form-group floating-label-form-group controls">
           <label>Title</label>
-          <input type="text" class="form-control" placeholder="Title" id="title" required data-validation-required-message="Please enter a title.">
+          <input type="text" class="form-control" name="title" placeholder="Title" id="title" required data-validation-required-message="Please enter a title.">
           <p class="help-block text-danger"></p>
         </div>
-      </div>
       <div class="control-group">
         <div class="form-group floating-label-form-group controls">
           <label>Blog body</label>
-          <textarea rows="5" class="form-control" placeholder="Blog Body" id="message" required data-validation-required-message="Please enter a message."></textarea>
+          <textarea rows="5" class="form-control" placeholder="Blog Body" id="message" required data-validation-required-message="Please enter a message." name="body"></textarea>
           <p class="help-block text-danger"></p>
         </div>
       </div>
