@@ -1,6 +1,8 @@
 """Module that contains callable server functions."""
 from pyramid.view import view_config
-from pyramid.httpexceptions import HTTPBadRequest, HTTPFound, HTTPNotFound
+from pyramid.httpexceptions import (HTTPBadRequest,
+                                    HTTPFound,
+                                    HTTPNotFound)
 from learning_journal.models.entrymodel import Entry
 from pyramid.security import NO_PERMISSION_REQUIRED
 from pyramid.security import remember, forget
