@@ -2,8 +2,7 @@
 import os
 from pyramid.authentication import AuthTktAuthenticationPolicy
 from pyramid.authorization import ACLAuthorizationPolicy
-from pyramid.security import Everyone, Authenticated
-from pyramid.security import Allow
+from pyramid.security import Everyone, Authenticated, Allow
 from passlib.apps import custom_app_context as pwd_context
 
 
@@ -24,12 +23,12 @@ def includeme(config):
 def check_credentials(username, password):
     """Check the user login info."""
     stored_username = os.environ.get("AUTH_USERNAME", "")
-    sotred_password = os.environ.get("AUTH_PASSWORD", "")
+    stored_password = os.environ.get("AUTH_PASSWORD", "")
     is_authenticated = False
-    if stored_username and stored_username:
+    if stored_username and stored_password:
         if username == stored_username:
             try:
-                is_authenticated = pwd_context.verify(password, sotred_password)
+                is_authenticated = pwd_context.verify(password, stored_password)
             except ValueError:
                 pass
     return is_authenticated

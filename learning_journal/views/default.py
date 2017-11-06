@@ -4,7 +4,6 @@ from pyramid.httpexceptions import (HTTPBadRequest,
                                     HTTPFound,
                                     HTTPNotFound)
 from learning_journal.models.entrymodel import Entry
-from pyramid.security import NO_PERMISSION_REQUIRED
 from pyramid.security import remember, forget
 from learning_journal.security import check_credentials
 
@@ -32,12 +31,12 @@ def detail_view(request):
     """Function that generates single journal entry."""
     post_id = int(request.matchdict['id'])
     post = request.dbsession.query(Entry).get(post_id)
-    if post:
-        return {
-            "title": "Details",
-            "post": post
-        }
-    raise HTTPNotFound
+    if not post:
+        raise HTTPNotFound
+    return {
+        "title": "Details",
+        "post": post
+    }
 
 
 @view_config(route_name="create",
@@ -91,8 +90,7 @@ def delete_entry(request):
 
 
 @view_config(route_name="login",
-             renderer="learning_journal:templates/login.jinja2",
-             permission=NO_PERMISSION_REQUIRED)
+             renderer="learning_journal:templates/login.jinja2")
 def login_view(request):
     """Function to return view for login page."""
     if request.method == "POST":
