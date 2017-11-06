@@ -10,3 +10,5 @@ def includeme(config):
     config.add_route('create', '/journal/new-entry')
     config.add_route('update', '/journal/{id:\d+}/edit-entry')
     config.add_route('delete', '/journal/{id:\d+}/delete')
+    config.add_route('login', '/login')
+    config.add_route('logout', '/logout')

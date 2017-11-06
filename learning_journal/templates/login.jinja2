@@ -1,0 +1,21 @@
+{% extends "layout.jinja2" %}
+{% block content %}
+    <form method="POST" id="contactForm" novalidate>
+      <div class="control-group">
+        <div class="form-group floating-label-form-group controls">
+          <label>Username</label>
+          <input type="text" class="form-control" name="username" placeholder="Username" id="title" required data-validation-required-message="Please enter a username.">
+          <p class="help-block text-danger"></p>
+        </div>
+        <div class="form-group floating-label-form-group controls">
+          <label>Password</label>
+          <input type="text" class="form-control" name="password" placeholder="Password" id="title" required data-validation-required-message="Please enter a password.">
+          <p class="help-block text-danger"></p>
+        </div>
+      <br>
+      <div id="success"></div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-secondary" id="sendMessageButton">Submit</button>
+      </div>
+    </form>
+{% endblock %}
