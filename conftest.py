@@ -9,7 +9,7 @@ from learning_journal.models import (
 )
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def configuration(request):
     """Set up a Configurator instance.
 
@@ -62,7 +62,7 @@ def dummy_request(db_session):
     return testing.DummyRequest(dbsession=db_session)
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def testapp(request):
     """Test function for mimicking working site."""
     from webtest import TestApp
