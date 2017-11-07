@@ -38,9 +38,11 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ request.route_url('home') }}">Home</a>
             </li>
+            {% if request.authenticated_userid %}
             <li class="nav-item">
               <a class="nav-link" href="{{ request.route_url('create') }}">Create</a>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{{ request.route_url('about') }}">About</a>
             </li>
