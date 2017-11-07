@@ -96,11 +96,28 @@ def test_create_view_raises_bad_request(dummy_request):
         create_view(dummy_request)
 
 
-def test_new_entry_redirects_to_home_page(testapp, empty_db):
-    """Test that after adding a new entry you get redirected to home page."""
-    test_entry = {
-        "title": "Fake Title",
-        "body": "The body lul"
-    }
-    response = testapp.post("/journal/new-entry", test_entry)
-    assert response.location == "http://localhost/"
+# def test_new_entry_redirects_to_home_page(testapp, empty_db):
+#     """Test that after adding a new entry you get redirected to home page."""
+#     test_entry = {
+#         "title": "Fake Title",
+#         "body": "The body lul"
+#     }
+#     response = testapp.post("/journal/new-entry", test_entry)
+#     assert response.location == "http://localhost/"
+
+
+# def test_update_view_changes_entry(testapp, fill_the_db):
+#     """."""
+#     test_entry = {
+#         "title": "Fake Title",
+#         "body": "The body lul"
+#     }
+#     testapp.post("/journal/1/edit-entry", test_entry)
+#     response = testapp.get("/journal/1")
+#     assert "Fake Title" in response.ubody
+
+
+# def test_delete_entry_works(testapp, fill_the_db):
+#     """."""
+#     response = testapp.get("/journal/1/delete")
+#     assert response.location == "http://localhost/"
