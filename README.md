@@ -16,7 +16,5 @@ default.py - 82%\
 routes.py - 100%
 
 **Step 4**\
-default.py - 56%\
+default.py - 91%\
 routes.py - 100%
-
-(default.py will get better coverage as I figure out how to write tests better)
