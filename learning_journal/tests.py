@@ -1,6 +1,6 @@
 """Functions that test server functions."""
 import pytest
-from pyramid.httpexceptions import HTTPBadRequest, HTTPNotFound
+from pyramid.httpexceptions import HTTPBadRequest
 from datetime import datetime
 from learning_journal.models import Entry
 
@@ -121,3 +121,10 @@ def test_create_view_raises_bad_request(dummy_request):
 #     """."""
 #     response = testapp.get("/journal/1/delete")
 #     assert response.location == "http://localhost/"
+
+
+def test_login_return_200(testapp):
+    """Test login functions returns 200 code is credentials OK."""
+    response = testapp.post("/login", params={'username': 'AUTH_USERNAME',
+                                              'password': 'AUTH_PASSWORD'})
+    assert response.status_code == 200
