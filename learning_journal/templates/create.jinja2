@@ -1,6 +1,7 @@
 {% extends "layout.jinja2" %}
 {% block content %}
     <form method="POST" id="contactForm" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}" />
       <div class="control-group">
         <div class="form-group floating-label-form-group controls">
           <label>Title</label>

@@ -90,7 +90,8 @@ def delete_entry(request):
 
 
 @view_config(route_name="login",
-             renderer="learning_journal:templates/login.jinja2")
+             renderer="learning_journal:templates/login.jinja2",
+             require_csrf=False)
 def login_view(request):
     """Function to return view for login page."""
     if request.method == "POST":
