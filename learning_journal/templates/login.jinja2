@@ -4,17 +4,15 @@
       <input type="hidden" name="csrf_token" value="{{ request.session.get_csrf_token() }}" />
       <div class="control-group">
         <div class="form-group floating-label-form-group controls">
-          <label>Title</label>
-          <input type="text" class="form-control" name="title" placeholder="Title" id="title" required data-validation-required-message="Please enter a title.">
+          <label>Username</label>
+          <input type="text" class="form-control" name="username" placeholder="Username" id="title" required data-validation-required-message="Please enter a username.">
           <p class="help-block text-danger"></p>
         </div>
-      <div class="control-group">
         <div class="form-group floating-label-form-group controls">
-          <label>Blog body</label>
-          <textarea rows="5" class="form-control" placeholder="Blog Body" id="message" required data-validation-required-message="Please enter a message." name="body"></textarea>
+          <label>Password</label>
+          <input type="password" class="form-control" name="password" placeholder="Password" id="title" required data-validation-required-message="Please enter a password.">
           <p class="help-block text-danger"></p>
         </div>
-      </div>
       <br>
       <div id="success"></div>
       <div class="form-group">

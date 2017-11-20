@@ -2,6 +2,8 @@
 
 [Come Enjoy Reading!](https://cody-tech-blog.herokuapp.com/)
 
+**Authors:** [Cody Dibble](https://github.com/hcodydibble) & [Carson Newton](https://github.com/nosrac77)
+
 ## Test Coverage
 
 **Step 1**\
